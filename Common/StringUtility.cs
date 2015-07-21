@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
@@ -55,9 +53,10 @@ namespace Netricity.Common
 
 		public static object Convert(string str, Type toType)
 		{
-			object objectValue;
+			object objectValue = null;
 			bool canConvert;
 			TypeConverter converter = TypeDescriptor.GetConverter(toType);
+
 			if (converter == null || !converter.CanConvertFrom(typeof(string)))
 			{
 				canConvert = false;
@@ -66,17 +65,23 @@ namespace Netricity.Common
 			{
 				canConvert = true;
 			}
-			//bool flag1 = canConvert;
-			if (canConvert)
+
+			try
 			{
-				objectValue = RuntimeHelpers.GetObjectValue(converter.ConvertFrom(str));
+				if (canConvert)
+				{
+					objectValue = RuntimeHelpers.GetObjectValue(converter.ConvertFrom(str));
+				}
+				else
+				{
+					objectValue = RuntimeHelpers.GetObjectValue(System.Convert.ChangeType(str, toType));
+				}
 			}
-			else
+			catch (FormatException)
 			{
-				objectValue = RuntimeHelpers.GetObjectValue(System.Convert.ChangeType(str, toType));
 			}
-			object obj = objectValue;
-			return obj;
+			
+			return objectValue;
 		}
 
 		public static T Convert<T>(string str)

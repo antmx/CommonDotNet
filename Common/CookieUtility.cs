@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Configuration;
 
 namespace Netricity.Common
 {
-public static	class CookieUtility
+	public static	class CookieUtility
 	{
 		private static HttpCookiesSection _httpCookiesSection;
 
-		public static T GetCookieValue<T>(HttpContext context, string cookieName, string subKey, T defaultValue)
+		public static T GetCookieValue<T>(HttpContextBase context, string cookieName, string subKey, T defaultValue)
 		{
 			if (context != null && context.Request != null)
 			{
@@ -49,17 +46,17 @@ public static	class CookieUtility
 			return defaultValue;
 		}
 
-		public static T GetCookieValue<T>(HttpContext context, string cookieName, T defaultValue)
+		public static T GetCookieValue<T>(HttpContextBase context, string cookieName, T defaultValue)
 		{
 			return GetCookieValue<T>(context, cookieName, null, defaultValue);
 		}
 
-		public static void SetCookieValue(HttpContext context, string cookieName, object value, DateTime? expires = null)
+		public static void SetCookieValue(HttpContextBase context, string cookieName, object value, DateTime? expires = null)
 		{
 			SetCookieValue(context, cookieName, null, value);
 		}
 
-		public static void SetCookieValue(HttpContext context, string cookieName, string subKey, object value, DateTime? expires = null)
+		public static void SetCookieValue(HttpContextBase context, string cookieName, string subKey, object value, DateTime? expires = null)
 		{
 			if (context == null)
 				throw new ArgumentException(nameof(context));
@@ -102,7 +99,7 @@ public static	class CookieUtility
 		/// <param name="cookieName">Name of the cookie.</param>
 		/// <param name="pathIsAppRoot">if set to <c>true</c>, the cookie's Path property is set to that virtual path of the current application, e.g '/admin'.
 		/// This is useful for situations where 2 cookies exist with the same name and domain, but are used for different virtual folder paths.</param>
-		public static void RemoveCookie(HttpContext context, string cookieName, bool pathIsAppRoot = false)
+		public static void RemoveCookie(HttpContextBase context, string cookieName, bool pathIsAppRoot = false)
 		{
 			if(context == null)
 				throw new ArgumentException(nameof(context));
