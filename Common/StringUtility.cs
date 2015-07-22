@@ -80,7 +80,7 @@ namespace Netricity.Common
 			catch (FormatException)
 			{
 			}
-			
+
 			return objectValue;
 		}
 
@@ -510,15 +510,15 @@ namespace Netricity.Common
 
 			return str.EndsWith(value, StringComparison.OrdinalIgnoreCase);
 		}
-		
-	        public static string StripCarriageReturns(this string text)
-        	{
-	            return Regex.Replace(text, @"(\r|\n)+", "", RegexOptions.None | RegexOptions.Multiline);
-	        }
-		
-		public static string RemoveWhitespace(this string value)
-        	{
-            		return value.Replace(" ", "").Trim();
-        	}		
+
+		public static string StripCarriageReturns(string text)
+		{
+			return Regex.Replace(text, @"(\r|\n)+", "", RegexOptions.None | RegexOptions.Multiline);
+		}
+
+		public static string RemoveWhitespace(string value)
+		{
+			return value.Replace(" ", "").Trim();
+		}
 	}
 }
