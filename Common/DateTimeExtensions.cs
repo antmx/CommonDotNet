@@ -84,7 +84,7 @@ namespace Netricity.Common
 		/// <param name="dob">Date of birth</param>
 		public static int AgeNow(this DateTime dob)
 		{
-			return AgeAt(dob, DateTime.Now);
+			return AgeAt(dob, SystemTime.Now);
 		}
 
 		/// <summary>
@@ -108,7 +108,7 @@ namespace Netricity.Common
 		/// <param name="age">e.g. 21</param>
 		public static DateTime DobFromAge(int age)
 		{
-			return DobFromAge(age, DateTime.Today);
+			return DobFromAge(age, SystemTime.Today);
 		}
 
 		/// <summary>
@@ -125,7 +125,7 @@ namespace Netricity.Common
 
 		public static int? ApproxAgeFromYob(int? yob)
 		{
-			var today = DateTime.Today;
+			var today = SystemTime.Today;
 
 			if (!yob.HasValue || yob <= 0 || yob > today.Year)
 				return null;
@@ -138,7 +138,7 @@ namespace Netricity.Common
 
 		public static int? ApproxYobFromAge(int? approxAge)
 		{
-			var today = DateTime.Today;
+			var today = SystemTime.Today;
 
 			if (!approxAge.HasValue || approxAge < 0 || approxAge > today.Year)
 				return null;

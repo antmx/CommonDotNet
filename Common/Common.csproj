@@ -63,6 +63,7 @@
     <Compile Include="SerializableKeyValuePair.cs" />
     <Compile Include="StringExtensions.cs" />
     <Compile Include="StringUtility.cs" />
+    <Compile Include="SystemTime.cs" />
     <Compile Include="TypeExtensions.cs" />
     <Compile Include="UrlUtility.cs" />
     <Compile Include="WebUtility.cs" />
