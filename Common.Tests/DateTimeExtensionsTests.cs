@@ -36,43 +36,124 @@ namespace Netricity.Common.Tests
 		[Test()]
 		public void AgeAtTest()
 		{
-			Assert.Inconclusive();
+			var expected = 3;
+			var actual = DateTimeExtensions.AgeAt(
+				new DateTime(2007, 4, 24),
+				new DateTime(2010, 6, 11));
+
+			Assert.AreEqual(expected, actual);
 		}
 
 		[Test()]
 		public void DobFromAgeTest()
 		{
-			Assert.Inconclusive();
+			SystemTime.NowFunction = () => new DateTime(2010, 6, 11, 10, 15, 16, 178);
+
+			var expected = new DateTime(2007, 1, 1);
+			var actual = DateTimeExtensions.DobFromAge(3);
+
+			Assert.AreEqual(expected, actual);
 		}
 
 		[Test()]
 		public void DobFromAgeTest1()
 		{
-			Assert.Inconclusive();
+			var atDate = new DateTime(2010, 6, 11, 10, 15, 16, 178);
+
+			var expected = new DateTime(2007, 1, 1);
+			var actual = DateTimeExtensions.DobFromAge(3, atDate);
+
+			Assert.AreEqual(expected, actual);
 		}
 
 		[Test()]
 		public void ApproxAgeFromYobTest()
 		{
-			Assert.Inconclusive();
+			SystemTime.NowFunction = () => new DateTime(2010, 6, 11, 10, 15, 16, 178);
+
+			// Null yob
+			var expected = (int?)null;
+			var actual = DateTimeExtensions.ApproxAgeFromYob(null);
+			Assert.IsNull(actual);
+
+			// Future yob
+			expected = 0;
+			actual = DateTimeExtensions.ApproxAgeFromYob(2011);
+			Assert.IsNull(actual);
+
+			// Current yob
+			expected = 0;
+			actual = DateTimeExtensions.ApproxAgeFromYob(2010);
+			Assert.AreEqual(expected, actual);
+
+			// Past yob
+			expected = 3;
+			actual = DateTimeExtensions.ApproxAgeFromYob(2007);
+			Assert.AreEqual(expected, actual);
 		}
 
 		[Test()]
 		public void ApproxYobFromAgeTest()
 		{
-			Assert.Inconclusive();
+			SystemTime.NowFunction = () => new DateTime(2010, 6, 11, 10, 15, 16, 178);
+
+			// Null age
+			var expected = (int?)null;
+			var actual = DateTimeExtensions.ApproxYobFromAge(null);
+			Assert.IsNull(actual);
+
+			// Negative age
+			expected = null;
+			actual = DateTimeExtensions.ApproxAgeFromYob(-1);
+			Assert.IsNull(actual);
+
+			// Future yob
+			expected = null;
+			actual = DateTimeExtensions.ApproxAgeFromYob(2011);
+			Assert.IsNull(actual);
+
+			// Zero age
+			expected = 0;
+			actual = DateTimeExtensions.ApproxAgeFromYob(2010);
+			Assert.AreEqual(expected, actual);
+
+			// Future yob
+			expected = 3;
+			actual = DateTimeExtensions.ApproxAgeFromYob(2007);
+			Assert.AreEqual(expected, actual);
 		}
 
 		[Test()]
 		public void GetDayOfMonthSuffixTest()
 		{
-			Assert.Inconclusive();
+			var date = new DateTime(2010, 6, 1);
+         var expected = "st";
+			var actual = date.GetDayOfMonthSuffix();
+			Assert.AreEqual(expected, actual);
+
+			date = new DateTime(2010, 6, 2);
+			expected = "nd";
+			actual = date.GetDayOfMonthSuffix();
+			Assert.AreEqual(expected, actual);
+
+			date = new DateTime(2010, 6, 3);
+			expected = "rd";
+			actual = date.GetDayOfMonthSuffix();
+			Assert.AreEqual(expected, actual);
+
+			date = new DateTime(2010, 6, 12);
+			expected = "th";
+			actual = date.GetDayOfMonthSuffix();
+			Assert.AreEqual(expected, actual);
 		}
 
 		[Test()]
 		public void TruncateToWholeMinutesTest()
 		{
-			Assert.Inconclusive();
+			var date = new DateTime(2010, 6, 11, 10, 15, 59, 999);
+			var expected = new DateTime(2010, 6, 11, 10, 15, 0);
+			var actual = date.TruncateToWholeMinutes();
+			Assert.AreEqual(expected, actual);
 		}
 	}
 }
