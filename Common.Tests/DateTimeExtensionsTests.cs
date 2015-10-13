@@ -155,5 +155,31 @@ namespace Netricity.Common.Tests
 			var actual = date.TruncateToWholeMinutes();
 			Assert.AreEqual(expected, actual);
 		}
-	}
+
+      [Test]
+      public void DateTimeTryParseExactSingleTest()
+      {
+         var strDate = "24/04/2007";
+         var expected = new DateTime(2007, 4, 24);
+         DateTime actual = new DateTime();
+
+         Assert.IsTrue(DateTimeExtensions.DateTimeTryParseExact(strDate, "dd/MM/yyyy", ref actual));
+
+         Assert.AreEqual(expected, actual);
+      }
+
+      [Test]
+      public void DateTimeTryParseExactMultipleTest()
+      {
+         var strDate = "11/6/2010";
+         var expected = new DateTime(2010, 6, 11);
+         DateTime actual = new DateTime();
+
+         var formats = new string[] { "dd/M/yyyy", "d/MM/yyyy" };
+
+         Assert.IsTrue(DateTimeExtensions.DateTimeTryParseExact(strDate, formats, ref actual));
+
+         Assert.AreEqual(expected, actual);
+      }
+   }
 }
