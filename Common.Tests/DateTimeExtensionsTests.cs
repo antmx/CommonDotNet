@@ -181,5 +181,16 @@ namespace Netricity.Common.Tests
 
          Assert.AreEqual(expected, actual);
       }
+
+      [Test]
+      public void ToJavascriptDateTest()
+      {
+         var date = new DateTime(2009, 5, 25);
+
+         var actual = date.ToJavascriptDate();
+         var expected = "1243209600000";
+
+         Assert.AreEqual(actual, expected);
+      }
    }
 }
