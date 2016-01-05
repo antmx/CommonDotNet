@@ -215,17 +215,17 @@ namespace Netricity.Common
       //         .TotalMilliseconds
       //         .ToString();
       //}
-      
-      	public static double ToJavaScriptDate(this DateTime dateTime)
-    {
-      return dateTime.Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds;
-    }
 
-    public static double? ToJavaScriptDate(this DateTime? dateTime)
-    {
-      if (!dateTime.HasValue)
-        return new double?();
-      return new double?(dateTime.Value.Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds);
-    }
+      public static double ToJavaScriptDate(this DateTime dateTime)
+      {
+         return dateTime.Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds;
+      }
+
+      public static double? ToJavaScriptDate(this DateTime? dateTime)
+      {
+         if (!dateTime.HasValue)
+            return new double?();
+         return new double?(dateTime.Value.Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds);
+      }
    }
 }
