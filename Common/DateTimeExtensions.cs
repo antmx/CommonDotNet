@@ -208,12 +208,24 @@ namespace Netricity.Common
          return DateTime.TryParseExact(str, dateFormats, CultureInfo.InvariantCulture, DateTimeStyles.None, out result);
       }
 
-      public static string ToJavascriptDate(this DateTime dateTime)
-      {
-         return dateTime
-               .Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc))
-               .TotalMilliseconds
-               .ToString();
-      }
+      //public static string ToJavascriptDate(this DateTime dateTime)
+      //{
+      //   return dateTime
+      //         .Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc))
+      //         .TotalMilliseconds
+      //         .ToString();
+      //}
+      
+      	public static double ToJavaScriptDate(this DateTime dateTime)
+    {
+      return dateTime.Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds;
+    }
+
+    public static double? ToJavaScriptDate(this DateTime? dateTime)
+    {
+      if (!dateTime.HasValue)
+        return new double?();
+      return new double?(dateTime.Value.Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds);
+    }
    }
 }
