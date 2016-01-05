@@ -183,7 +183,7 @@ namespace Netricity.Common.Tests
       }
 
       [Test]
-      public void ToJavascriptDateTest()
+      public void ToJavaScriptDateTest()
       {
          var date = new DateTime(2009, 5, 25);
 
