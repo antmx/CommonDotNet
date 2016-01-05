@@ -82,5 +82,10 @@ namespace Netricity.Common
 		{
 			return StringUtility.IsIn(str, caseSensitive, list);
 		}
+
+      public static bool IsEmailAddress(this string str)
+      {
+         return StringUtility.IsEmailAddress(str);
+      }
    }
 }

@@ -401,11 +401,21 @@ namespace Netricity.Common
 			return false;
 		}
 
-		/// <summary>
-		/// Returns the string converted to PascalCase.
-		/// </summary>
-		/// <param name="str">The string.</param>
-		public static string ToPascalCase(string str)
+      public static bool IsEmailAddress(string str)
+      {
+         if (string.IsNullOrEmpty(str) || !Regex.IsMatch(str, "^.+@.+\\..{2,10}$"))
+         {
+            return false;
+         }
+
+         return true;
+      }
+
+      /// <summary>
+      /// Returns the string converted to PascalCase.
+      /// </summary>
+      /// <param name="str">The string.</param>
+      public static string ToPascalCase(string str)
 		{
 			if (str == null)
 				return null;
