@@ -87,5 +87,36 @@ namespace Netricity.Common
       {
          return StringUtility.IsEmailAddress(str);
       }
+
+      public static string Left(this string str, int length)
+      {
+         return StringUtility.Left(str, length);
+      }
+
+      public static string Lower(this string str)
+      {
+         return StringUtility.Lower(str);
+      }
+
+      public static string Right(this string str, int length)
+      {
+         return StringUtility.Right(str, length);
+      }
+      
+      public static string ChopStart(this string str, string start)
+      {
+         return StringUtility.ChopStart(str, start);
+      }
+
+      public static string ChopEnd(this string str, string end)
+      {
+         return StringUtility.ChopEnd(str, end);
+      }
+
+      public static string[] ConvertCsvToStringArray(this string str, char separator = ',', StringSplitOptions options = StringSplitOptions.RemoveEmptyEntries)
+      {
+         return StringUtility.ConvertCsvToStringArray(str, separator, options);
+      }
+
    }
 }

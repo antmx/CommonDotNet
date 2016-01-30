@@ -69,6 +69,7 @@
     <Compile Include="StringUtility.cs" />
     <Compile Include="SystemTime.cs" />
     <Compile Include="TypeExtensions.cs" />
+    <Compile Include="UriExtensions.cs" />
     <Compile Include="UrlUtility.cs" />
     <Compile Include="WebUtility.cs" />
     <Compile Include="XmlUtility.cs" />
