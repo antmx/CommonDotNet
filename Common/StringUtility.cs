@@ -530,5 +530,16 @@ namespace Netricity.Common
 		{
 			return value.Replace(" ", "").Trim();
 		}
+		
+		public static string TruncateAtWord(string str, int length)
+		{
+		    if (str == null || str.Length < length) {
+			return str;
+		    }
+			
+		    int iNextSpace = str.LastIndexOf(" ", length, StringComparison.Ordinal);
+			
+		    return string.Format("{0}…", str.Substring(0, (iNextSpace > 0) ? iNextSpace : length).Trim());
+		}		
 	}
 }
