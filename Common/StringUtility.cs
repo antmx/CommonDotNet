@@ -466,20 +466,24 @@ namespace Netricity.Common
 			return output.ToString();
 		}
 
-		public static string ReplaceCI(string str, string oldValue, string newValue)
+		/// <summary>
+		/// In a specified input string, uses a case-insensitive comparison to replace all strings that match a specified regular expression with a specified replacement string.
+		/// </summary>
+		/// <param name="input">The string to search in for a match.</param>
+		/// <param name="pattern">The string or regular expression pattern to match in <paramref name="input"/>. Can be repeated in <paramref name="input"/>.</param>
+		/// <param name="replacement">The new string to replace any occurances of <paramref name="pattern"/> with.</param>
+		/// <returns>A new string that is identical to the input string, except that the replacement string takes the place of each matched string. If pattern Is Not matched in the current instance, the method returns the current instance unchanged.</returns>
+		public static string ReplaceCI(string input, string pattern, string replacement)
 		{
-			if (str == null || oldValue == null)
-				return str;
-
-			if (newValue == null)
-				newValue = string.Empty;
-
-			var replaced = Regex.Replace(
-				str,
-				Regex.Escape(oldValue),
-				Regex.Escape(newValue));
-
-			return Regex.Unescape(replaced);
+		    if (input == null || string.IsNullOrEmpty(pattern))
+		        return input;
+		
+		    if (replacement == null)
+		        replacement = string.Empty;
+		
+		    string replaced = Regex.Replace(input, pattern, replacement, RegexOptions.IgnoreCase);
+		
+		    return Regex.Unescape(replaced);
 		}
 
 		public static bool ContainsCI(string str, params string[] values)
